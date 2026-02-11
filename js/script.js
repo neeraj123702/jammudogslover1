@@ -271,7 +271,7 @@ function createReviewCard(review) {
 
 function saveReviewToStorage(review) {
     let reviews = JSON.parse(localStorage.getItem('customerReviews')) || [];
-    reviews.unshift(review);
+    reviews.push(review);
     localStorage.setItem('customerReviews', JSON.stringify(reviews));
 }
 
@@ -291,7 +291,7 @@ function addReviewToDOM(review) {
     if (!reviewsGrid) return;
 
     const reviewCard = createReviewCard(review);
-    reviewsGrid.insertAdjacentHTML('afterbegin', reviewCard);
+    reviewsGrid.insertAdjacentHTML('beforeend', reviewCard);
 }
 
 // Delete review functionality
@@ -371,7 +371,7 @@ function submitEnquiry(form) {
     form.reset();
 
     // Construct WhatsApp message
-    const message = `New Enquiry – S2 Kennel Jammu\nBreed: ${breed}\nName: ${custName}\nPhone: ${custPhone}\nMessage: ${custMessage}`;
+    const message = `Hello S2 Kennel Jammu,\n\nName: ${custName}\nPhone: ${custPhone}\nBreed: ${breed}\nMessage: ${custMessage}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/919796120006?text=${encodedMessage}`;
 

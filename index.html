@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="S2 Kennel Jammu - Premium Dog Breeders in Vijaypur, Jammu & Kashmir">
+    <title>S2 Kennel Jammu - Premium Dogs | Vijaypur</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        .hero-img {
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+            border-radius: 10px;
+            max-height: 400px;
+            min-height: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-img {
+                height: 40vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-img {
+                height: 30vh;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER/NAVBAR -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="brand">
+                    <h1 class="brand-title">S2 Kennel Jammu</h1>
+                    <p class="brand-subtitle">🐕 Premium Dog Breeders • Vijaypur</p>
+                </div>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="navbar" id="navbar">
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-link active">Home</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="cats.html" class="nav-link">Cats</a></li>
+                        <li><a href="dogs.html" class="nav-link">Dogs</a></li>
+                        <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+                        <li><a href="health-tips.html" class="nav-link">Health Tips</a></li>
+                        <li><a href="location.html" class="nav-link">Location</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2 class="hero-title">WELCOME TO S2 KENNEL JAMMU</h2>
+                        <p class="hero-description">S2 Kennel Jammu is renowned for premium dog breeding with ethical practices, rigorous health certifications, and unwavering commitment to quality. Every dog is bred with meticulous care and complete transparency, ensuring your
+                            perfect companion arrives healthy and ready for their forever home.</p>
+                        <div class="hero-buttons">
+                            <a href="dogs.html" class="btn btn-primary">View Our Dogs</a>
+                            <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img id="heroImg" src="images/dog1.jpg" alt="Dog" class="hero-img">
+                    </div>
+                </div>
+
+                <!-- Owner Section -->
+                <div class="owner-section">
+                    <div class="owner-photo-wrapper">
+                        <img src="images/owner.jpg" alt="Harsh Sharma - Owner" class="owner-photo">
+                    </div>
+                    <div class="owner-info">
+                        <h3 class="owner-name">Harsh Sharma</h3>
+                        <p class="owner-title">Founder & Owner – S2 Kennel Jammu</p>
+                        <p class="owner-experience">10+ Years Experience in Premium Dog Breeding</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- OUR HONOR / OWNER SECTION -->
+        <section class="honor-section">
+            <div class="container">
+                <h2 class="section-title">Our Honor / Owner</h2>
+                <div class="honor-content">
+                    <div class="honor-photo-wrapper">
+                        <img src="images/owner.jpg" alt="Harsh Sharma - Owner" class="honor-photo">
+                    </div>
+                    <div class="honor-info">
+                        <h3 class="honor-name">Harsh Sharma</h3>
+                        <p class="honor-title">Founder & Owner – S2 Kennel Jammu</p>
+                        <p class="honor-experience">10+ Years of Experience in Premium & Healthy Dog Breeding</p>
+                        <p class="honor-bio">With over a decade of dedication and passion, Harsh Sharma has established S2 Kennel Jammu as the premier destination for premium dog breeding. His commitment to excellence, health standards, and ethical breeding practices ensures
+                            that every dog finds a perfect home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK DOGS PREVIEW -->
+        <section class="quick-preview">
+            <div class="container">
+                <h2 class="section-title">Featured Dogs</h2>
+                <p class="section-subtitle">Browse our premium collection of carefully bred dogs</p>
+                <div class="preview-buttons">
+                    <a href="dogs.html" class="btn btn-primary">View All Dogs</a>
+                </div>
+            </div>
+        </section>
+        </section>
+
+        <!-- LOCATION SECTION -->
+        <section class="location-section">
+            <div class="container">
+                <h2 class="section-title">📍 Our Location</h2>
+                <div class="location-content">
+                    <div class="location-info">
+                        <div class="location-badge">
+                            <span class="location-icon">📍</span>
+                            <h3>Vijaypur, Jammu & Kashmir</h3>
+                        </div>
+                        <p class="location-text">Visit us at our kennel in Vijaypur to meet our dogs in person. We are open for visits by appointment.</p>
+                        <a href="location.html" class="btn btn-maps">
+                            📍 View Location on Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">💬 Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <div class="contact-details">
+                            <div class="detail-item">
+                                <span class="detail-label">👨‍💼 Manager:</span>
+                                <span class="detail-value">Nikhil Sharma</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">👨‍💻 Coordinator:</span>
+                                <span class="detail-value">Neeraj Sharma</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">📍 Location:</span>
+                                <span class="detail-value">Vijaypur, Jammu & Kashmir</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">💬 WhatsApp:</span>
+                                <span class="detail-value"><a href="https://wa.me/919796120006" class="contact-link" target="_blank">+91 9796120006</a></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">📷 Follow Us:</span>
+                                <span class="detail-value"><a href="https://www.instagram.com/jammu_dogslover" class="contact-link insta-link" target="_blank">📷 Instagram @jammu_dogslover</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-wrapper">
+                        <h3>Quick Enquiry Form</h3>
+                        <form id="enquiryForm" class="enquiry-form">
+                            <input type="text" id="dogBreed" placeholder="Dog Breed" readonly>
+                            <input type="text" id="custName" placeholder="Your Name" required>
+                            <input type="tel" id="custPhone" placeholder="Phone Number" required>
+                            <textarea id="custMessage" placeholder="Your Message or Questions" rows="4" required></textarea>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>S2 Kennel Jammu</h4>
+                    <p>Premium Dog Breeders</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Management</h4>
+                    <p>Manager: Nikhil Sharma</p>
+                    <p>Coordinator: Neeraj Sharma</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <a href="https://www.instagram.com/jammu_dogslover" target="_blank" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5A4.5 4.5 0 1 0 16.5 13 4.5 4.5 0 0 0 12 8.5zm5-.75a1.25 1.25 0 1 1-1.25-1.25A1.25 1.25 0 0 1 17 7.75zM12 10.5A1.5 1.5 0 1 1 10.5 12 1.5 1.5 0 0 1 12 10.5z"/></svg>                        Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 S2 Kennel Jammu. All Rights Reserved. | Location: Vijaypur, Jammu & Kashmir</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FOR ENQUIRY FORM -->
+    <div id="enquiryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>🐕 Enquiry Form</h2>
+            <form id="enquiryFormModal" class="enquiry-form">
+                <input type="text" id="dogBreedModal" placeholder="Dog Breed" readonly required>
+                <input type="text" id="custNameModal" placeholder="Your Name" required>
+                <input type="tel" id="custPhoneModal" placeholder="Phone Number" required>
+                <textarea id="custMessageModal" placeholder="Your Message or Questions" rows="4" required></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        const images = [
+            'images/dog1.jpg',
+            'images/Golden labrador1.jpeg',
+            'images/Shihtzu 1.jpeg',
+            'images/Rottweiller1.jpeg',
+            'images/Tibetian mastiff1.jpg.jpeg'
+        ];
+        let currentIndex = 0;
+        const heroImg = document.getElementById('heroImg');
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            heroImg.src = images[currentIndex];
+        }
+
+        setInterval(changeImage, 2000);
+    </script>
+</body>
+
+</html>

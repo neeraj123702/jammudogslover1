@@ -376,6 +376,13 @@ function submitEnquiry(form) {
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://api.whatsapp.com/send?phone=919796120006&text=${encodedMessage}`;
 
+    // Send the enquiry to the server to store in DB and Excel (fires async)
+    try {
+        sendEnquiryToServer({ dogBreed: breed, custName, custPhone, custMessage });
+    } catch (err) {
+        console.error('Failed to send enquiry to server', err);
+    }
+
     // Force WhatsApp redirect - no fail allowed
     window.open(whatsappUrl, "_blank");
 
@@ -384,6 +391,22 @@ function submitEnquiry(form) {
     if (modal && modal.classList.contains('show')) {
         modal.classList.remove('show');
     }
+}
+
+// Send enquiry to backend endpoint for DB + Excel logging
+function sendEnquiryToServer(data) {
+    fetch('http://localhost:3001/api/enquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log('Enquiry saved on server:', result);
+    })
+    .catch(err => {
+        console.error('Error saving enquiry to server:', err);
+    });
 }
 
 // Add scroll animations for elements

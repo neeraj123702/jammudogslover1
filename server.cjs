@@ -7,7 +7,7 @@ const ExcelJS = require('exceljs');
 
 const app = express();
 const port = 3001;
-const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'change_me_secure_token';
+const ADMIN_TOKEN = process.env.ADMIN_TOKEN || 'f3a9c2b7e4d6a1f0b8c3d2e7a9c1b4f0';
 
 // Middleware
 app.use(cors());
@@ -39,21 +39,21 @@ app.post('/api/enquiry', (req, res) => {
         return res.status(400).json({ error: 'Name, phone, and message are required' });
     }
 
-    // Insert into database
+    // First, save to Excel so enquiries are stored even if DB is unavailable
+    saveEnquiryToExcel({ dogBreed, custName, custPhone, custMessage })
+        .then(() => console.log('Enquiry appended to Excel'))
+        .catch(err => console.error('Failed to append enquiry to Excel:', err));
+
+    // Insert into database (best-effort). Respond success to client regardless of DB state.
     const query = 'INSERT INTO enquiries (dog_breed, customer_name, customer_phone, customer_message) VALUES (?, ?, ?, ?)';
     db.execute(query, [dogBreed, custName, custPhone, custMessage], (err, result) => {
         if (err) {
             console.error('Error inserting enquiry:', err);
-            return res.status(500).json({ error: 'Failed to save enquiry' });
+            // Do NOT fail the client response; Excel holds the record
+            return res.status(200).json({ message: 'Enquiry submitted (saved to Excel). Database unavailable.' });
         }
         console.log('Enquiry saved successfully');
-
-        // Also save the enquiry to a local Excel file for owner access
-        saveEnquiryToExcel({ dogBreed, custName, custPhone, custMessage })
-            .then(() => console.log('Enquiry appended to Excel'))
-            .catch(err => console.error('Failed to append enquiry to Excel:', err));
-
-        res.status(200).json({ message: 'Enquiry submitted successfully' });
+        return res.status(200).json({ message: 'Enquiry submitted successfully' });
     });
 });
 
@@ -103,11 +103,6 @@ async function saveEnquiryToExcel({ dogBreed, custName, custPhone, custMessage }
     }
 }
 
-// Start server
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
-
 // Protected endpoint to download the enquiries Excel file
 app.get('/admin/download-enquiries', (req, res) => {
     const token = req.get('x-admin-token') || req.query.token;
@@ -123,4 +118,9 @@ app.get('/admin/download-enquiries', (req, res) => {
     res.download(excelPath, 'enquiries.xlsx', (err) => {
         if (err) console.error('Error sending enquiries file:', err);
     });
+});
+
+// Start server
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });

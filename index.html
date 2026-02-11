@@ -97,6 +97,307 @@
 
 
 
+        <!-- BEGIN: Premium Homepage (dog-themed) - inserted block -->
+        <section id="premium-dog-home" aria-label="Premium homepage features">
+            <style>
+                /* Premium fonts and scoped styles under #premium-dog-home to avoid affecting other pages */
+                @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap');
+                #premium-dog-home { max-width:1200px; margin:28px auto; padding:0 16px; box-sizing:border-box; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:#222; }
+                /* Hero / Slider */
+                #premium-dog-home .hero { position:relative; border-radius:12px; overflow:hidden; height:420px; display:flex; align-items:center; justify-content:center; background:#f7fbff; margin-bottom:20px; }
+                #premium-dog-home .hero .slides { position:absolute; inset:0; }
+                #premium-dog-home .hero .slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity .8s ease; }
+                #premium-dog-home .hero .slide.active { opacity:1; }
+                #premium-dog-home .hero .overlay { position:relative; z-index:2; padding:28px; color:#fff; text-shadow:0 6px 18px rgba(0,0,0,.45); max-width:900px; }
+                #premium-dog-home .hero h1{ margin:0 0 8px; font-size:36px; font-family:'Playfair Display', serif; letter-spacing:0.4px; }
+                #premium-dog-home .hero p{ margin:0; font-size:16px; opacity:0.95; }
+
+                /* Layout rows */
+                #premium-dog-home .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:16px; }
+                #premium-dog-home .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px; }
+                #premium-dog-home .card { background:#fff; border-radius:12px; padding:14px; box-shadow:0 12px 30px rgba(15,23,42,.06); display:flex; flex-direction:column; gap:10px; }
+
+                /* Featured Dogs */
+                #premium-dog-home .dog { overflow:hidden; display:flex; gap:10px; align-items:flex-start; }
+                #premium-dog-home .dog .thumb { width:120px; height:90px; border-radius:8px; background-size:cover; background-position:center; flex:0 0 120px; }
+                #premium-dog-home .dog h3{ margin:0; color:#0b4a72; font-size:16px; }
+                #premium-dog-home .dog p{ margin:0; font-size:13px; color:#444; }
+
+                /* Puppy Care Tips */
+                #premium-dog-home .tip { display:flex; gap:10px; align-items:flex-start; padding:10px; border-radius:8px; background:linear-gradient(180deg,#fff,#fbfdff); }
+
+                /* Customer Reviews */
+                #premium-dog-home .review { padding:12px; border-radius:8px; background:#fff; min-height:80px; }
+                #premium-dog-home .stars { color:#f5a623; font-weight:700; }
+
+                /* Promotions / WhatsApp */
+                #premium-dog-home .promo { background:linear-gradient(90deg,#fff2e6,#fff9f1); padding:12px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; gap:12px; box-shadow:0 8px 24px rgba(15,23,42,.04); }
+                #premium-dog-home .promo .left { font-weight:700; color:#b33a00; }
+                #premium-dog-home .promo .right { font-size:14px; color:#6b3b12; }
+
+                #premium-dog-home .whatsapp { background:#25D366; color:#fff; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:8px; box-shadow:0 8px 20px rgba(37,211,102,.18); }
+
+                /* Enquire Now button */
+                #premium-dog-home .btn-enquire { background:linear-gradient(90deg,#0b76b7,#0b4a72); color:#fff; border:none; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:700; }
+
+                /* Modal styles (scoped) */
+                #pd-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(8,12,20,0.5); z-index:1200; }
+                #pd-modal.active { display:flex; }
+                #pd-modal .modal-box { width:100%; max-width:520px; background:#fff; border-radius:12px; padding:18px; box-shadow:0 20px 60px rgba(10,20,40,.6); }
+                #pd-modal h3{ margin:0 0 8px; font-family:'Playfair Display', serif; }
+                #pd-modal .field { margin-bottom:10px; }
+                #pd-modal input[type="text"], #pd-modal input[type="tel"], #pd-modal textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #e6eef8; font-size:14px; }
+                #pd-modal .modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:8px; }
+                #pd-modal .btn-cancel { background:#f2f4f7; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }
+
+                /* Gallery preview */
+                #premium-dog-home .gallery { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+                #premium-dog-home .gallery a { display:block; height:80px; border-radius:8px; overflow:hidden; background-size:cover; background-position:center; box-shadow:0 6px 18px rgba(11,26,45,.04); }
+
+                /* Utilities */
+                #premium-dog-home a.link { color:#0b76b7; text-decoration:none; font-weight:600; }
+                @media (max-width:980px){
+                  #premium-dog-home .grid-3 { grid-template-columns:repeat(2,1fr); }
+                  #premium-dog-home .grid-4 { grid-template-columns:repeat(2,1fr); }
+                  #premium-dog-home .gallery { grid-template-columns:repeat(3,1fr); }
+                  #premium-dog-home .hero { height:300px; }
+                }
+                @media (max-width:560px){
+                  #premium-dog-home .grid-3, #premium-dog-home .grid-4 { grid-template-columns:1fr; }
+                  #premium-dog-home .gallery { grid-template-columns:repeat(2,1fr); }
+                  #premium-dog-home .hero { height:220px; }
+                }
+            </style>
+
+            <!-- Hero / Slider -->
+            <div class="hero" role="region" aria-label="Homepage hero">
+                <div class="slides" id="pd-slides">
+                    <div class="slide active" style="background-image:url('images/dog1.jpg');"></div>
+                    <div class="slide" style="background-image:url('images/dog2.jpg');"></div>
+                    <div class="slide" style="background-image:url('images/dog3.jpg');"></div>
+                </div>
+                <div class="overlay" aria-hidden="false">
+                    <h1>Bring Your Dream Dog Home</h1>
+                    <p style="font-size:16px;">Handpicked breeds, premium care, and seamless adoption — find your perfect companion today.</p>
+                </div>
+            </div>
+
+            <!-- Featured Dogs -->
+            <div style="margin-bottom:14px;">
+                <h2 style="margin:0 0 10px;">Featured Dogs</h2>
+                <div class="grid-3">
+                    <div class="card dog">
+                        <div class="thumb" style="background-image:url('images/Labrador 1.jpeg');" aria-hidden="true"></div>
+                        <div>
+                            <h3>Labrador Retriever</h3>
+                            <p>Friendly, outgoing, and great with families. Ideal for active households.</p>
+                            <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+                                <a class="link" href="dogs.html">Learn More →</a>
+                                <button class="btn-enquire" data-dog="Labrador Retriever">Enquire Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card dog">
+                        <div class="thumb" style="background-image:url('images/dog2.jpg');" aria-hidden="true"></div>
+                        <div>
+                            <h3>Beagle</h3>
+                            <p>Curious and merry; loves exploring and has a gentle nature with kids.</p>
+                            <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+                                <a class="link" href="dogs.html">Learn More →</a>
+                                <button class="btn-enquire" data-dog="Beagle">Enquire Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card dog">
+                        <div class="thumb" style="background-image:url('images/Toy Pom1.jpeg');" aria-hidden="true"></div>
+                        <div>
+                            <h3>Pomeranian</h3>
+                            <p>Small, lively companion — great for apartment living and affectionate owners.</p>
+                            <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+                                <a class="link" href="dogs.html">Learn More →</a>
+                                <button class="btn-enquire" data-dog="Pomeranian">Enquire Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Puppy Care Tips -->
+            <div style="margin-bottom:14px;">
+                <h2 style="margin:0 0 10px;">Puppy Care Tips</h2>
+                <div class="grid-3">
+                    <div class="card tip">
+                        <div>
+                            <strong>1. Socialization</strong>
+                            <p style="margin:6px 0 0;font-size:13px;color:#444;">Introduce your puppy to people and pets early for confident growth.</p>
+                        </div>
+                        <div style="align-self:center;"><a class="link" href="health-tips.html">Read More →</a></div>
+                    </div>
+                    <div class="card tip">
+                        <div>
+                            <strong>2. Nutrition</strong>
+                            <p style="margin:6px 0 0;font-size:13px;color:#444;">Choose age-appropriate food and follow feeding guidelines with vet checks.</p>
+                        </div>
+                        <div style="align-self:center;"><a class="link" href="health-tips.html">Read More →</a></div>
+                    </div>
+                    <div class="card tip">
+                        <div>
+                            <strong>3. Training Basics</strong>
+                            <p style="margin:6px 0 0;font-size:13px;color:#444;">Start gentle routines and positive reinforcement from day one.</p>
+                        </div>
+                        <div style="align-self:center;"><a class="link" href="health-tips.html">Read More →</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Reviews -->
+            <div style="margin-bottom:14px;">
+                <h2 style="margin:0 0 10px;">Customer Reviews</h2>
+                <div class="grid-3">
+                    <div class="card review">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div><strong>Sunita P.</strong><div class="stars">★★★★★</div></div>
+                            <div style="font-size:12px;color:#777;">Verified</div>
+                        </div>
+                        <p style="margin:8px 0 0;font-size:13px;color:#444;">Amazing care and updates during our pup's stay — very trustworthy team.</p>
+                    </div>
+                    <div class="card review">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div><strong>Rakesh M.</strong><div class="stars">★★★★☆</div></div>
+                            <div style="font-size:12px;color:#777;">Verified</div>
+                        </div>
+                        <p style="margin:8px 0 0;font-size:13px;color:#444;">Friendly staff and great play area; booking was simple and responsive.</p>
+                    </div>
+                    <div class="card review">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div><strong>Anita K.</strong><div class="stars">★★★★★</div></div>
+                            <div style="font-size:12px;color:#777;">Verified</div>
+                        </div>
+                        <p style="margin:8px 0 0;font-size:13px;color:#444;">Highly recommend for grooming — our dog looked and felt wonderful.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Promotions + WhatsApp Button -->
+            <div style="margin-bottom:14px;">
+                <div class="promo">
+                    <div class="left">Adoption Week Special — Adoption fees waived for select pups!</div>
+                    <div class="right">
+                        <a id="pd-whatsapp" class="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dog Gallery Preview -->
+            <div style="margin-bottom:14px;">
+                <h2 style="margin:0 0 10px;">Dog Gallery Preview</h2>
+                    <div class="gallery" aria-label="Dog gallery preview">
+                    <a href="gallery.html" style="background-image:url('images/dog4.jpg');" aria-label="Gallery image 1"></a>
+                    <a href="gallery.html" style="background-image:url('images/dog5.jpg');" aria-label="Gallery image 2"></a>
+                    <a href="gallery.html" style="background-image:url('images/dog6.jpg');" aria-label="Gallery image 3"></a>
+                    <a href="gallery.html" style="background-image:url('images/dog3.jpg');" aria-label="Gallery image 4"></a>
+                </div>
+                <div style="margin-top:8px;"><a class="link" href="gallery.html">View Full Gallery →</a></div>
+            </div>
+
+            <!-- Enquiry modal (scoped) -->
+            <div id="pd-modal" aria-hidden="true">
+                <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="pd-modal-title">
+                    <button id="pd-modal-close" aria-label="Close" class="btn-cancel" style="float:right;">✕</button>
+                    <h3 id="pd-modal-title">Enquire About <span id="pd-modal-dog">Dog</span></h3>
+                    <form id="pd-enquire-form">
+                        <div class="field"><input type="text" id="pd-name" placeholder="Your name" required></div>
+                        <div class="field"><input type="tel" id="pd-phone" placeholder="Phone number (with country code, e.g. 9198...)" required></div>
+                        <div class="field"><textarea id="pd-message" rows="4" placeholder="Your message / enquiry"></textarea></div>
+                        <div class="modal-actions">
+                            <button type="button" class="btn-cancel" id="pd-cancel">Cancel</button>
+                            <button type="submit" class="btn-enquire" id="pd-submit">Send via WhatsApp</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                (function(){
+                    // Slider logic (simple, scoped)
+                    const slides = document.querySelectorAll('#premium-dog-home .hero .slide');
+                    let sidx = 0;
+                    if(slides.length > 1){
+                        setInterval(()=> {
+                            slides[sidx].classList.remove('active');
+                            sidx = (sidx + 1) % slides.length;
+                            slides[sidx].classList.add('active');
+                        }, 4500);
+                    }
+
+                    // WhatsApp quick action: open chat with number prefilled message
+                    const waBtn = document.getElementById('pd-whatsapp');
+                    // Use the clinic's WhatsApp number (country code, no +)
+                    const WA_NUMBER = '919796120006';
+                    const PREFILL_TEXT = encodeURIComponent('Hello S2 Kennel Jammu, I have a query about your dogs.');
+                    waBtn.href = 'https://wa.me/' + WA_NUMBER + '?text=' + PREFILL_TEXT;
+                    waBtn.setAttribute('target','_blank');
+                    waBtn.setAttribute('rel','noopener');
+                    waBtn.setAttribute('aria-label','Contact us on WhatsApp');
+
+                    // Enquiry modal functionality
+                    const modal = document.getElementById('pd-modal');
+                    const modalDog = document.getElementById('pd-modal-dog');
+                    const enquireButtons = document.querySelectorAll('#premium-dog-home .btn-enquire');
+                    const form = document.getElementById('pd-enquire-form');
+                    const nameInput = document.getElementById('pd-name');
+                    const phoneInput = document.getElementById('pd-phone');
+                    const messageInput = document.getElementById('pd-message');
+                    const modalClose = document.getElementById('pd-modal-close');
+                    const modalCancel = document.getElementById('pd-cancel');
+
+                    let selectedDog = '';
+
+                    function openModal(dog){
+                        selectedDog = dog || '';
+                        modalDog.textContent = selectedDog;
+                        modal.classList.add('active');
+                        modal.setAttribute('aria-hidden','false');
+                        nameInput.focus();
+                    }
+                    function closeModal(){
+                        modal.classList.remove('active');
+                        modal.setAttribute('aria-hidden','true');
+                        form.reset();
+                    }
+
+                    enquireButtons.forEach(btn => {
+                        btn.addEventListener('click', (e)=>{
+                            const dog = btn.getAttribute('data-dog') || btn.dataset.dog || 'Dog';
+                            openModal(dog);
+                        });
+                    });
+
+                    modalClose.addEventListener('click', closeModal);
+                    modalCancel.addEventListener('click', closeModal);
+                    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+                    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+                    // On submit -> open WhatsApp chat with prefilled message containing form data
+                    form.addEventListener('submit', (e)=>{
+                        e.preventDefault();
+                        const name = nameInput.value.trim();
+                        const phone = phoneInput.value.trim();
+                        const msg = messageInput.value.trim();
+                        if(!name || !phone) {
+                            alert('Please provide your name and phone number.');
+                            return;
+                        }
+                        const text = `Enquiry about: ${selectedDog}%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AMessage: ${encodeURIComponent(msg)}`;
+                        const url = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(`Enquiry about: ${selectedDog}\nName: ${name}\nPhone: ${phone}\nMessage: ${msg}`);
+                        window.open(url, '_blank');
+                        closeModal();
+                    });
+                })();
+            </script>
+        </section>
+        <!-- END: Premium Homepage (dog-themed) - inserted block -->
+
         <!-- OUR HONOR / OWNER SECTION -->
         <section class="honor-section">
             <div class="container">

@@ -373,13 +373,10 @@ function submitEnquiry(form) {
     // Construct WhatsApp message
     const message = `Hello S2 Kennel Jammu,\n\nName: ${custName}\nPhone: ${custPhone}\nBreed: ${breed}\nMessage: ${custMessage}`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919796120006?text=${encodedMessage}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=919796120006&text=${encodedMessage}`;
 
     // Force WhatsApp redirect - no fail allowed
-    window.location.href = whatsappUrl;
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-    }, 100);
+    window.open(whatsappUrl, "_blank");
 
     // Close modal if it was opened
     const modal = document.getElementById('enquiryModal');

@@ -265,6 +265,7 @@ function createReviewCard(review) {
             </div>
             <p class="review-text">${review.text}</p>
             <p class="review-date">${review.date || review.timestamp}</p>
+            <button class="btn btn-whatsapp share-review-btn" onclick="shareReview('${encodeURIComponent(review.text)}')">Share on WhatsApp</button>
         </div>
     `;
 }
@@ -407,6 +408,12 @@ function observeElements() {
             observer.observe(el);
         });
     }
+}
+
+// Share Review on WhatsApp
+function shareReview(encodedText) {
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=919796120006&text=${encodedText}`;
+    window.open(whatsappUrl, "_blank");
 }
 
 // Scroll to Top Function
